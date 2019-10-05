@@ -18,36 +18,36 @@ void change(int LED_COLOR){
 }
 
 void flick(){
-    int FLICK_TIME = TIME/4;
+    int flick_time = TIME/4;
     for (int amount = 0; amount < 5; amount++)
     {
         digitalWrite(LED_GREEN, LOW);
-        delay(FLICK_TIME);
+        delay(flick_time);
         digitalWrite(LED_GREEN, HIGH);
-        delay(FLICK_TIME);
+        delay(flick_time);
         digitalWrite(LED_GREEN, LOW);
     }
 }
 
-void human(){
+void lightForHumans(){
     digitalWrite(LED_GREEN, LOW);
     change(LED_YELLOW);
     change(LED_RED);
 }
 
-void car(){
+void lightForCar(){
     change(LED_YELLOW);
     change(LED_RED);
 }
 
 void setup(){
     pin();
-    attachInterrupt(0, human, FALLING);
+    attachInterrupt(0, lightForHumans, FALLING);
 }
 
 void loop(){
     digitalWrite(LED_GREEN, HIGH);
     delay(TIME);
     flick();
-    car();
+    lightForCar();
 }
